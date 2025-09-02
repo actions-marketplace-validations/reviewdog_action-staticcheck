@@ -17,6 +17,7 @@ else
   curl -sfL  "https://github.com/dominikh/go-tools/releases/download/${STATICCHECK_VERSION}/staticcheck_linux_amd64.tar.gz" | tar -xvz -C "${TEMP_PATH}" --strip-components=1
 fi
 staticcheck --version
+go version -m "$(which staticcheck)"
 echo '::endgroup::'
 
 
