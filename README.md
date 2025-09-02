@@ -57,6 +57,9 @@ inputs:
   staticcheck_flags:
     description: 'staticcheck flags'
     default: ''
+  use_go_install:
+    description: 'Use go install to build staticcheck from source instead of downloading prebuilt binary'
+    default: 'false'
 ```
 
 ## Usage
@@ -121,4 +124,3 @@ This repository uses [haya14busa/action-depup](https://github.com/haya14busa/act
 reviewdog version.
 
 [![reviewdog depup demo](https://user-images.githubusercontent.com/3797062/73154254-170e7500-411a-11ea-8211-912e9de7c936.png)](https://github.com/reviewdog/action-template/pull/6)
-
