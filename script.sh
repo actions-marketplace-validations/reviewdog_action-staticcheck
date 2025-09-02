@@ -9,7 +9,13 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 STATICCHECK_VERSION="2025.1.1"
 echo '::group:: Installing staticcheck ... https://staticcheck.io'
-curl -sfL  "https://github.com/dominikh/go-tools/releases/download/${STATICCHECK_VERSION}/staticcheck_linux_amd64.tar.gz" | tar -xvz -C "${TEMP_PATH}" --strip-components=1
+if [ "${INPUT_USE_GO_INSTALL}" = "true" ]; then
+  echo "Building staticcheck from source using go install..."
+  GOBIN="${TEMP_PATH}" go install "honnef.co/go/tools/cmd/staticcheck@${STATICCHECK_VERSION}"
+else
+  echo "Downloading prebuilt staticcheck binary..."
+  curl -sfL  "https://github.com/dominikh/go-tools/releases/download/${STATICCHECK_VERSION}/staticcheck_linux_amd64.tar.gz" | tar -xvz -C "${TEMP_PATH}" --strip-components=1
+fi
 staticcheck --version
 echo '::endgroup::'
 

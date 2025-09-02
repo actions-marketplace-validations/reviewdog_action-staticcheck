@@ -43,6 +43,9 @@ inputs:
   staticcheck_flags:
     description: 'staticcheck flags'
     default: ''
+  use_go_install:
+    description: 'Use go install to build staticcheck from source instead of downloading prebuilt binary'
+    default: 'false'
 runs:
   using: 'composite'
   steps:
@@ -62,6 +65,7 @@ runs:
         INPUT_REVIEWDOG_FLAGS: '${{ inputs.reviewdog_flags }}'
         INPUT_TARGET: '${{ inputs.target }}'
         INPUT_STATICCHECK_FLAGS: '${{ inputs.staticcheck_flags }}'
+        INPUT_USE_GO_INSTALL: '${{ inputs.use_go_install }}'
 
 # Ref: https://haya14busa.github.io/github-action-brandings/
 branding:
